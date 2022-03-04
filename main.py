@@ -34,10 +34,10 @@ def send_news(message, SEND=SEND):
     if SEND == False:
         print("Im here 1")
         SEND = True
-        print('news parsed succes')
         start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
         print("Start time is - " + start_time)
         newss = parse()
+        print('news parsed succes')
         for news in newss:
             print("start newss for")
             news_time = datetime.datetime.strptime(str(start_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
