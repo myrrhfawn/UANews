@@ -74,4 +74,3 @@ if __name__ == '__main__':
         print(news['time'])
         print(now_time > news_time)"""
 
-    #start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
