@@ -8,10 +8,11 @@ HEADERS = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 HOST = "https://www.pravda.com.ua"
 LAST = datetime.datetime(2000, 1, 1)
 
+
 def get_content(html):
     soup = BeautifulSoup(html, 'html.parser')
     items = soup.find_all('div', class_='article_news_list')
-
+    times = []
     news = []
     for item in items:
         head = item.find('div', class_='article_header')
@@ -25,14 +26,19 @@ def get_content(html):
             image = img.get('src')
         else:
             image = None
-
-        news.append({
-            'time': item.find('div', class_='article_time').get_text(),
-            'header': head.find('a').get_text().replace('відео, фото', '').replace('відео', '').replace('фото', '').replace('список', '').replace('документ', ''),
-            'subheader': subheader,
-            'href': HOST + item.find('a').get('href'),
-            'image': image,
-        })
+        t = item.find('div', class_='article_time').get_text()
+        news_time = datetime.datetime.strptime(t, '%H:%M').time()
+        if times and news_time > times[-1]:
+            return news[::-1]
+        else:
+            times.append(news_time)
+            news.append({
+                'time': item.find('div', class_='article_time').get_text(),
+                'header': head.find('a').get_text().replace('відео, фото', '').replace('відео', '').replace('фото', '').replace('список', '').replace('документ', '').replace('ВІДЕО', ''),
+                'subheader': subheader,
+                'href': HOST + item.find('a').get('href'),
+                'image': image,
+            })
 
     return news[::-1]
 
@@ -73,4 +79,5 @@ if __name__ == '__main__':
         print(now_time)
         print(news['time'])
         print(now_time > news_time)"""
-
+    for news in newss:
+        print(news['header'])
