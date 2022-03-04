@@ -20,15 +20,15 @@ def start(message):
     print("start start func")
     SEND = False
     chat_id = message.chat.id
-    bot.send_message(chat_id, "Привіт!🇺🇦"
+    bot.send_message(chat_id, "Привіт!🇺🇦\n"
                               "Цей бот був створений для отримання актуальної інформації в Україні.\n"
-                              " Надішліть:\n"
+                              "Надішліть:\n"
                               "/news - щоб отримувати актуальні новини.\n"
                               "/stop - щоб зупинити розсилку.\n")
     print("end start func")
 
 @bot.message_handler(commands=['news'])
-def send_news(message):
+def send_news(message, SEND=SEND):
     print("start send_news")
     chat_id = message.chat.id
     if SEND == False:
@@ -67,7 +67,7 @@ def send_news(message):
                                    reply_markup=markup,
                                    )
 
-    while SEND == True:
+    while SEND != False:
         print("news while")
         now_time = datetime.datetime.now()
         newss = parse()
