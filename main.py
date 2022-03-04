@@ -19,7 +19,7 @@ LAST_SEND = datetime.datetime(2000, 1, 1)
 def start(message):
     SEND = False
     chat_id = message.chat.id
-    send_message(chat_id, "Hello, Hi there! This bot was created to obtain "
+    bot.send_message(chat_id, "Hello, Hi there! This bot was created to obtain "
                           "information about the situation in Ukraine.Send:\n "
                           "/news - to receive current news in ukraine. \n"
                           "/stot - to stop notifications. ")
