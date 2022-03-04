@@ -33,13 +33,15 @@ def send_news(message):
     chat_id = message.chat.id
     if SEND == False:
         print("Im here 1")
-        SEND == True
+        SEND = True
         news = parse()
         start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
+        print("Start time is - " + start_time)
         newss = parse()
         for news in newss:
             print("start newss for")
             news_time = datetime.datetime.strptime(str(start_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
+            print("news_ time is - " + news_time)
             if news_time > start_time:
                 markup = types.InlineKeyboardMarkup(row_width=1)
                 item = types.InlineKeyboardButton('Перейти', url=news['href'])
@@ -65,7 +67,7 @@ def send_news(message):
                                    reply_markup=markup,
                                    )
 
-    while SEND:
+    while SEND == True:
         print("news while")
         now_time = datetime.datetime.now()
         newss = parse()
