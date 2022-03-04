@@ -67,7 +67,7 @@ def send_news(message, SEND=SEND):
                     LAST_SEND = news_time
                     print("send news witgin image")
                     bot.send_message(chat_id=chat_id,
-                                    caption=title,
+                                    text=title,
                                     reply_markup=markup,
                                     )
                 else:
