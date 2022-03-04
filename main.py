@@ -1,9 +1,10 @@
 import os
 import telebot
+import datetime
 from telebot import types
 from flask import Flask, request
 from parse_news import parse
-from datetime
+
 
 TOKEN = '5188420032:AAHPoq0xXoR9YJgaSi_Q36-KsToaSwnF1f8'
 APP_URL = f'https://uanews2022.herokuapp.com/{TOKEN}'
