@@ -11,7 +11,7 @@ APP_URL = f'https://uanews2022.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 SEND = False
-LAST_SEND = datetime.datetime(2000, 1, 1)
+LAST_SEND = datetime.datetime(2000, 1, 1).time()
 
 #bot
 
@@ -35,12 +35,13 @@ def send_news(message, SEND=SEND):
         print("Im here 1")
         SEND = True
         start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
+        start_time = start_time.time()
         print(start_time)
         newss = parse()
         print('news parsed succes')
         for news in newss:
             print("start newss for")
-            news_time = datetime.datetime.strptime(str(start_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
+            news_time = datetime.datetime.strptime(news['time'], '%H:%M').time()
             print(news_time)
             if news_time > start_time:
                 markup = types.InlineKeyboardMarkup(row_width=1)
@@ -69,10 +70,10 @@ def send_news(message, SEND=SEND):
 
     while SEND != False:
         print("news while")
-        now_time = datetime.datetime.now()
+        now_time = datetime.datetime.now().time()
         newss = parse()
         for news in newss:
-            news_time = datetime.datetime.strptime(str(now_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
+            news_time = datetime.datetime.strptime(news['time'], '%H:%M').time()
             if news_time > LAST_SEND:
                 markup = types.InlineKeyboardMarkup(row_width=1)
                 item = types.InlineKeyboardButton('Перейти', url=news['href'])

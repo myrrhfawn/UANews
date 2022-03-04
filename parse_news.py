@@ -65,10 +65,17 @@ if __name__ == '__main__':
             else:
                 print(news['time'])
                 LAST = news_time
+    '''
+    newss = parse()
+    """for news in newss:
+        now_time = datetime.datetime.now().time()
+        news_time = datetime.datetime.strptime(news['time'], '%H:%M').time()
+        print(now_time)
+        print(news['time'])
+        print(now_time > news_time)"""
 
-    for news in newss:
-        now_time = datetime.datetime.now()
-        news_time = datetime.datetime.strptime(str(now_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
-        if news_time > LAST:
-            pass
-            print("LAST<" + news['time'])'''
+    start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
+    start_time = datetime.datetime.now().time()
+    zero_time = datetime.datetime(2000, 1, 1).time()
+
+    print(start_time > zero_time)
