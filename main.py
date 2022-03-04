@@ -36,9 +36,8 @@ def send_news(message, SEND=SEND):
         print("Im here 1")
         SEND = True
         start_time_data = datetime.datetime.now() + datetime.timedelta(hours=2)
-        now_time = datetime.datetime.now().time()
+        now_time = start_time_data.time()
         start_time = start_time_data.time()
-        print(start_time)
         zero_time = datetime.time(0, 00, 00)
         hour_time = datetime.time(1, 00, 00)
         if start_time > zero_time and start_time < hour_time:
@@ -47,13 +46,15 @@ def send_news(message, SEND=SEND):
             start_time = start_time_data - datetime.timedelta(hours=1)
             start_time = start_time.time()
 
-        print(start_time)
         newss = parse()
         print('news parsed succes')
         for news in newss:
             print("start newss for")
             news_time = datetime.datetime.strptime(news['time'], '%H:%M').time()
+            print("======")
+            print(start_time)
             print(news_time)
+            print(now_time)
             print(news['header'])
             if news_time > start_time and news_time < now_time:
                 markup = types.InlineKeyboardMarkup(row_width=1)
@@ -67,6 +68,7 @@ def send_news(message, SEND=SEND):
                     LAST_SEND = news_time
                     print("send news witgin image")
                     bot.send_message(chat_id=chat_id,
+                                    parse_mode='Markdown',
                                     text=title,
                                     reply_markup=markup,
                                     )
