@@ -20,21 +20,23 @@ def start(message):
     SEND = False
     chat_id = message.chat.id
     bot.send_message(chat_id, "Привіт!🇺🇦",
-                              "Це бот був створений для отримання актулаьної інформації в Україні.\n"
-                              " Надішліть:\n"
-                              "/news - щоб отримувати актуальні новини.\n"
-                              "/stop - щоб зупинити розсилку.\n"
-                              "Вся інформація взята з сайт https://www.pravda.com.ua/news/")
+                              "Цей бот був створений для отримання актуальної інформації в Україні.\n",
+                              " Надішліть:\n",
+                              "/news - щоб отримувати актуальні новини.\n",
+                              "/stop - щоб зупинити розсилку.\n",)
 
 @bot.message_handler(commands=['news'])
 def send_news(message):
+    print("im here 0")
     chat_id = message.chat.id
     if SEND == False:
+        print("Im here 1")
         SEND == True
         news = parse()
         start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
         newss = parse()
         for news in newss:
+            print("im here 2")
             news_time = datetime.datetime.strptime(str(start_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
             if news_time > start_time:
                 markup = types.InlineKeyboardMarkup(row_width=1)
@@ -59,33 +61,33 @@ def send_news(message):
                                    reply_markup=markup
                                    )
 
-        while SEND:
-            now_time = datetime.datetime.now()
-            newss = parse()
-            for news in newss:
-                news_time = datetime.datetime.strptime(str(now_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
-                if news_time > LAST_SEND:
-                    markup = types.InlineKeyboardMarkup(row_width=1)
-                    item = types.InlineKeyboardButton('Перейти', url=news['href'])
-                    markup.add(item)
-                    if news['subheader'] != None:
-                        title = f" *{news['header']}*\n{news['subheader']}\n*{news['time']}*"
-                    else:
-                        title = f" *{news['header']}*\n*{news['time']}*"
-                    if news['image'] == None:
-                        LAST_SEND = news_time
-                        bot.send_message(chat_id=chat_id,
-                                         caption=title,
-                                         reply_markup=markup
-                                         )
-                    else:
-                        LAST_SEND = news_time
-                        bot.send_photo(chat_id=chat_id,
-                                       parse_mode='Markdown',
-                                       photo=news['image'],
-                                       caption=title,
-                                       reply_markup=markup
-                                       )
+    while SEND:
+        now_time = datetime.datetime.now()
+        newss = parse()
+        for news in newss:
+            news_time = datetime.datetime.strptime(str(now_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
+            if news_time > LAST_SEND:
+                markup = types.InlineKeyboardMarkup(row_width=1)
+                item = types.InlineKeyboardButton('Перейти', url=news['href'])
+                markup.add(item)
+                if news['subheader'] != None:
+                    title = f" *{news['header']}*\n{news['subheader']}\n*{news['time']}*"
+                else:
+                    title = f" *{news['header']}*\n*{news['time']}*"
+                if news['image'] == None:
+                    LAST_SEND = news_time
+                    bot.send_message(chat_id=chat_id,
+                                     caption=title,
+                                     reply_markup=markup
+                                     )
+                else:
+                    LAST_SEND = news_time
+                    bot.send_photo(chat_id=chat_id,
+                                    parse_mode='Markdown',
+                                    photo=news['image'],
+                                    caption=title,
+                                    reply_markup=markup
+                                    )
 
 
 @bot.message_handler(commands=['stop'])
