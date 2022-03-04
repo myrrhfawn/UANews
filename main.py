@@ -17,6 +17,7 @@ LAST_SEND = datetime.datetime(2000, 1, 1)
 
 @bot.message_handler(commands=['start', 'help'])
 def start(message):
+    print("start start func")
     SEND = False
     chat_id = message.chat.id
     bot.send_message(chat_id, "Привіт!🇺🇦",
@@ -24,10 +25,11 @@ def start(message):
                               " Надішліть:\n",
                               "/news - щоб отримувати актуальні новини.\n",
                               "/stop - щоб зупинити розсилку.\n",)
+    print("end start func")
 
 @bot.message_handler(commands=['news'])
 def send_news(message):
-    print("im here 0")
+    print("start send_news")
     chat_id = message.chat.id
     if SEND == False:
         print("Im here 1")
@@ -36,7 +38,7 @@ def send_news(message):
         start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
         newss = parse()
         for news in newss:
-            print("im here 2")
+            print("start newss for")
             news_time = datetime.datetime.strptime(str(start_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
             if news_time > start_time:
                 markup = types.InlineKeyboardMarkup(row_width=1)
@@ -48,20 +50,23 @@ def send_news(message):
                     title = f" *{news['header']}*\n*{news['time']}*"
                 if news['image'] == None:
                     LAST_SEND = news_time
+                    print("send news witgin image")
                     bot.send_message(chat_id=chat_id,
                                     caption=title,
-                                    reply_markup=markup
+                                    reply_markup=markup,
                                     )
                 else:
                     LAST_SEND = news_time
+                    print("send news with image")
                     bot.send_photo(chat_id=chat_id,
                                    parse_mode='Markdown',
                                    photo=news['image'],
                                    caption=title,
-                                   reply_markup=markup
+                                   reply_markup=markup,
                                    )
 
     while SEND:
+        print("news while")
         now_time = datetime.datetime.now()
         newss = parse()
         for news in newss:
