@@ -19,10 +19,12 @@ LAST_SEND = datetime.datetime(2000, 1, 1)
 def start(message):
     SEND = False
     chat_id = message.chat.id
-    bot.send_message(chat_id, "Hello, Hi there! This bot was created to obtain "
-                          "information about the situation in Ukraine.Send:\n "
-                          "/news - to receive current news in ukraine. \n"
-                          "/stot - to stop notifications. ")
+    bot.send_message(chat_id, "Привіт!🇺🇦",
+                              "Це бот був створений для отримання актулаьної інформації в Україні.\n"
+                              " Надішліть:\n"
+                              "/news - щоб отримувати актуальні новини.\n"
+                              "/stop - щоб зупинити розсилку.\n"
+                              "Вся інформація взята з сайт https://www.pravda.com.ua/news/")
 
 @bot.message_handler(commands=['news'])
 def send_news(message):
