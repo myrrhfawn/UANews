@@ -1,5 +1,4 @@
 import os
-import locale
 import telebot
 import datetime
 from telebot import types
@@ -37,6 +36,7 @@ def send_news(message, SEND=SEND):
         print("Im here 1")
         SEND = True
         start_time = datetime.datetime.now().time()
+        print(start_time)
         zero_time = datetime.time(0, 00, 00)
         hour_time = datetime.time(1, 00, 00)
         if start_time > zero_time and start_time < hour_time:
@@ -132,5 +132,4 @@ def webhook():
     return '!', 200
 
 if __name__ == '__main__':
-    locale.setlocale(locale.LC_TIME, 'ru_UA.utf8')
     server.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
