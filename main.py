@@ -87,7 +87,7 @@ def send_news(message):
 
 
 @bot.message_handler(commands=['stop'])
-def start(message):
+def stop(message):
     SEND = False
 
 
