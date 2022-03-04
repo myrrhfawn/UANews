@@ -74,8 +74,9 @@ if __name__ == '__main__':
         print(news['time'])
         print(now_time > news_time)"""
 
-    start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
-    start_time = datetime.datetime.now().time()
-    zero_time = datetime.datetime(2000, 1, 1).time()
-
-    print(start_time > zero_time)
+    #start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
+   """ start_time = datetime.datatime.now().time()
+    zero_time =  datetime.time(0, 00, 00)
+    hour_time =  datetime.time(1, 00, 00)
+    print(start_time)
+    print(zero_time < start_time and start_time < hour_time)"""
