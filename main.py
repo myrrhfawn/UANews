@@ -6,6 +6,7 @@ import datetime
 from telebot import types
 from flask import Flask, request
 from parse_news import parse
+import locale
 
 
 TOKEN = '5188420032:AAHPoq0xXoR9YJgaSi_Q36-KsToaSwnF1f8'
