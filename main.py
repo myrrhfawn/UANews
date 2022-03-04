@@ -36,7 +36,7 @@ def send_news(message, SEND=SEND):
     if SEND == False:
         print("Im here 1")
         SEND = True
-        start_time = datetime.datetime.now()
+        start_time = datetime.datetime.now().time()
         zero_time = datetime.time(0, 00, 00)
         hour_time = datetime.time(1, 00, 00)
         if start_time > zero_time and start_time < hour_time:
