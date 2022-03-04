@@ -1,12 +1,11 @@
 import os
-import pydoc_data.topics
-
+import locale
 import telebot
 import datetime
 from telebot import types
 from flask import Flask, request
 from parse_news import parse
-import locale
+
 
 
 TOKEN = '5188420032:AAHPoq0xXoR9YJgaSi_Q36-KsToaSwnF1f8'
@@ -133,5 +132,5 @@ def webhook():
     return '!', 200
 
 if __name__ == '__main__':
-    locale.setlocale(locale.LC_TIME, 'ru_UA.utf8')
+    locale.setlocale(locale.LC_TIME, 'uk_UA.utf8')
     server.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
