@@ -42,7 +42,4 @@ def parse(url):
     else:
         print("error")
 
-if __name__ == '__main__':
-    parse(URL)
-
 
