@@ -35,13 +35,13 @@ def send_news(message, SEND=SEND):
         print("Im here 1")
         SEND = True
         start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
-        print("Start time is - " + start_time)
+        print(start_time)
         newss = parse()
         print('news parsed succes')
         for news in newss:
             print("start newss for")
             news_time = datetime.datetime.strptime(str(start_time.date()) + ' ' + news['time'], '%Y-%m-%d %H:%M')
-            print("news_ time is - " + news_time)
+            print(news_time)
             if news_time > start_time:
                 markup = types.InlineKeyboardMarkup(row_width=1)
                 item = types.InlineKeyboardButton('Перейти', url=news['href'])
