@@ -13,7 +13,7 @@ APP_URL = f'https://uanews2022.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 SEND = False
-LAST_SEND = datetime.datetime(2000, 1, 1).time()
+LAST_SEND = datetime.time(0, 00, 00)
 
 #bot
 
