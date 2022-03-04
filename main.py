@@ -20,11 +20,11 @@ def start(message):
     print("start start func")
     SEND = False
     chat_id = message.chat.id
-    bot.send_message(chat_id, "Привіт!🇺🇦",
-                              "Цей бот був створений для отримання актуальної інформації в Україні.\n",
-                              " Надішліть:\n",
-                              "/news - щоб отримувати актуальні новини.\n",
-                              "/stop - щоб зупинити розсилку.\n",)
+    bot.send_message(chat_id, "Привіт!🇺🇦"
+                              "Цей бот був створений для отримання актуальної інформації в Україні.\n"
+                              " Надішліть:\n"
+                              "/news - щоб отримувати актуальні новини.\n"
+                              "/stop - щоб зупинити розсилку.\n")
     print("end start func")
 
 @bot.message_handler(commands=['news'])
@@ -34,7 +34,7 @@ def send_news(message):
     if SEND == False:
         print("Im here 1")
         SEND = True
-        news = parse()
+        print('news parsed succes')
         start_time = datetime.datetime.now() - datetime.timedelta(hours=1)
         print("Start time is - " + start_time)
         newss = parse()
