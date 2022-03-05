@@ -111,6 +111,9 @@ def send_news(message, SEND=True):
             print("exit from while")
             break
 
+@bot.message_handler(commands=['test'])
+def ffff(message):
+    print(message)
 
 @bot.message_handler(commands=['stop'])
 def stop(message):
