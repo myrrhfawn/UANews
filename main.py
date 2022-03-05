@@ -86,7 +86,7 @@ def send_news(message):
         sending()
         print("SENDING")
         print(send)
-        print("SEND"")
+        print("SEND")
         print("news while")
         now_time = datetime.datetime.now().time()
         newss = parse()
