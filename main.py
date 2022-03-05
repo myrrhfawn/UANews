@@ -29,7 +29,7 @@ def start(message):
     print("end start func")
 
 @bot.message_handler(commands=['news'])
-def send_news(message, SEND=SEND):
+def send_news(message):
     print("start send_news")
     chat_id = message.chat.id
     if SEND == False:
@@ -70,7 +70,7 @@ def send_news(message, SEND=SEND):
                     bot.send_message(chat_id=chat_id,
                                     parse_mode='Markdown',
                                     text=title,
-                                    reply_markup=markup,
+                                    reply_markup=markup
                                     )
                 else:
                     LAST_SEND = news_time
@@ -78,8 +78,8 @@ def send_news(message, SEND=SEND):
                     bot.send_photo(chat_id=chat_id,
                                    parse_mode='Markdown',
                                    photo=news['image'],
-                                   text=title,
-                                   reply_markup=markup,
+                                   caption=title,
+                                   reply_markup=markup
                                    )
 
     while True:
@@ -87,8 +87,12 @@ def send_news(message, SEND=SEND):
         now_time = datetime.datetime.now().time()
         newss = parse()
         for news in newss:
+            print("while in for")
             news_time = datetime.datetime.strptime(news['time'], '%H:%M').time()
+            print(LAST_SEND)
+            print(news_time)
             if news_time > LAST_SEND:
+                print("while: if")
                 markup = types.InlineKeyboardMarkup(row_width=1)
                 item = types.InlineKeyboardButton('Перейти', url=news['href'])
                 markup.add(item)
@@ -98,12 +102,14 @@ def send_news(message, SEND=SEND):
                     title = f" *{news['header']}*\n*{news['time']}*"
                 if news['image'] == None:
                     LAST_SEND = news_time
+                    print("sending without photo from while")
                     bot.send_message(chat_id=chat_id,
                                      caption=title,
                                      reply_markup=markup
                                      )
                 else:
                     LAST_SEND = news_time
+                    print("sending with photo from while")
                     bot.send_photo(chat_id=chat_id,
                                     parse_mode='Markdown',
                                     photo=news['image'],
@@ -111,6 +117,7 @@ def send_news(message, SEND=SEND):
                                     reply_markup=markup
                                     )
         if SEND == False:
+            print("end while")
             break
 
 
