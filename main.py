@@ -43,7 +43,7 @@ def send_news(message):
         if start_time > zero_time and start_time < hour_time:
             start_time = datetime.time(0, 00, 00)
         else:
-            start_time = start_time_data - datetime.timedelta(hours=1)
+            start_time = start_time_data - datetime.timedelta(hours=2)
             start_time = start_time.time()
 
         newss = parse()
@@ -66,11 +66,11 @@ def send_news(message):
                     title = f" *{news['header']}*\n*{news['time']}*"
                 if news['image'] == None:
                     LAST_SEND = news_time
-                    print("send news witgin image")
+                    print("send news without image")
                     bot.send_message(chat_id=chat_id,
                                     parse_mode='Markdown',
                                     text=title,
-                                    reply_markup=markup
+                                    reply_markup=markup,
                                     )
                 else:
                     LAST_SEND = news_time
@@ -79,7 +79,7 @@ def send_news(message):
                                    parse_mode='Markdown',
                                    photo=news['image'],
                                    caption=title,
-                                   reply_markup=markup
+                                   reply_markup=markup,
                                    )
 
     while SEND:
