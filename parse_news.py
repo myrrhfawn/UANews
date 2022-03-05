@@ -79,5 +79,3 @@ if __name__ == '__main__':
         print(now_time)
         print(news['time'])
         print(now_time > news_time)"""
-    for news in newss:
-        print(news['image'])

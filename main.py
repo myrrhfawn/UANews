@@ -11,15 +11,14 @@ TOKEN = '5188420032:AAHPoq0xXoR9YJgaSi_Q36-KsToaSwnF1f8'
 APP_URL = f'https://uanews2022.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
-SEND = False
 LAST_SEND = datetime.time(0, 00, 00)
+
 
 #bot
 
 @bot.message_handler(commands=['start', 'help'])
 def start(message):
     print("start start func")
-    SEND = False
     chat_id = message.chat.id
     bot.send_message(chat_id, "Привіт!🇺🇦\n"
                               "Цей бот був створений для отримання актуальної інформації в Україні.\n"
@@ -82,7 +81,7 @@ def send_news(message):
                                    reply_markup=markup
                                    )
 
-    while True:
+    while SEND:
         print("news while")
         now_time = datetime.datetime.now().time()
         newss = parse()
@@ -116,14 +115,12 @@ def send_news(message):
                                     caption=title,
                                     reply_markup=markup
                                     )
-        if SEND == False:
-            print("end while")
-            break
+
 
 
 @bot.message_handler(commands=['stop'])
 def stop(message):
-    SEND = False
+   SEND = False
 
 
 #@bot.message_handler(func=lambda message: True, content_types=['text'])
@@ -146,4 +143,5 @@ def webhook():
     return '!', 200
 
 if __name__ == '__main__':
+    SEND = False
     server.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
