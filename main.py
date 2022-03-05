@@ -12,7 +12,7 @@ APP_URL = f'https://uanews2022.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 LAST_SEND = datetime.time(0, 00, 00)
-send = []
+send = False
 
 
 #bot
@@ -83,11 +83,12 @@ def send_news(message):
     print("end for")
     print(send == True)
     while True:
-        sending()
-        print("SENDING")
+        print("news while")
         print(send)
         print("SEND")
-        print("news while")
+        sending()
+        print("SENDING")
+
         now_time = datetime.datetime.now().time()
         newss = parse()
         for news in newss:
@@ -123,10 +124,14 @@ def send_news(message):
 
 def sending():
     print(send)
+    print("Chage send")
+    send = False
+    print(send)
+
 
 @bot.message_handler(commands=['stop'])
 def stop(message):
-   send.pop(1)
+   send = False
 
 
 #@bot.message_handler(func=lambda message: True, content_types=['text'])
