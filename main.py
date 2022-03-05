@@ -30,7 +30,7 @@ def start(message):
 def send_news(message):
     print("start send_news")
     chat_id = message.chat.id
-    SEND == True
+    SEND = True
     if SEND == True:
         print("Im here 1")
         start_time_data = datetime.datetime.now() + datetime.timedelta(hours=2)
