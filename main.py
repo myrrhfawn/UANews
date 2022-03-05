@@ -79,17 +79,13 @@ def send_news(message, SEND=True):
                                    reply_markup=markup,
                                    )
     print("end for")
-    while SEND:
+    while True:
         print('Start while')
         now_time = datetime.datetime.now().time()
         newss = parse()
         for news in newss:
-            print("while in for")
             news_time = datetime.datetime.strptime(news['time'], '%H:%M').time()
-            print(LAST_SEND)
-            print(news_time)
             if news_time > LAST_SEND:
-                print("while: if")
                 markup = types.InlineKeyboardMarkup(row_width=1)
                 item = types.InlineKeyboardButton('Читати', url=news['href'])
                 markup.add(item)
@@ -99,21 +95,21 @@ def send_news(message, SEND=True):
                     title = f" *{news['header']}*\n*{news['time']}*"
                 if news['image'] == None:
                     LAST_SEND = news_time
-                    print("sending without photo from while")
                     bot.send_message(chat_id=chat_id,
                                      caption=title,
                                      reply_markup=markup
                                      )
                 else:
                     LAST_SEND = news_time
-                    print("sending with photo from while")
                     bot.send_photo(chat_id=chat_id,
                                     parse_mode='Markdown',
                                     photo=news['image'],
                                     caption=title,
                                     reply_markup=markup
                                     )
-
+        if SEND == False:
+            print("exit from while")
+            break
 
 
 @bot.message_handler(commands=['stop'])
