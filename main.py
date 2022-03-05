@@ -27,9 +27,16 @@ def start(message):
     print("end start func")
 
 @bot.message_handler(commands=['news'])
-def send_news(message, SEND=True):
+def send_news(message):
     print("start send_news")
     chat_id = message.chat.id
+    SEND = message.text
+    SEND = SEND.replace('/news ', '')
+    if SEND == 'stop':
+        SEND = False
+    else:
+        SEND = True
+
     if SEND == True:
         print("Im here 1")
         start_time_data = datetime.datetime.now() + datetime.timedelta(hours=2)
@@ -79,7 +86,7 @@ def send_news(message, SEND=True):
                                    reply_markup=markup,
                                    )
     print("end for")
-    while True:
+    while SEND:
         print('Start while')
         now_time = datetime.datetime.now().time()
         newss = parse()
@@ -115,9 +122,7 @@ def send_news(message, SEND=True):
 def ffff(message):
     print(message.text)
 
-@bot.message_handler(commands=['stop'])
-def stop(message):
-   exit(0)
+
 
 
 #@bot.message_handler(func=lambda message: True, content_types=['text'])
