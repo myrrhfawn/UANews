@@ -58,7 +58,7 @@ def send_news(message):
             print(news['header'])
             if news_time > start_time and news_time < now_time:
                 markup = types.InlineKeyboardMarkup(row_width=1)
-                item = types.InlineKeyboardButton('Перейти', url=news['href'])
+                item = types.InlineKeyboardButton('Читати', url=news['href'])
                 markup.add(item)
                 if news['subheader'] != None:
                     title = f" *{news['header']}*\n{news['subheader']}\n*{news['time']}*"
@@ -94,7 +94,7 @@ def send_news(message):
             if news_time > LAST_SEND:
                 print("while: if")
                 markup = types.InlineKeyboardMarkup(row_width=1)
-                item = types.InlineKeyboardButton('Перейти', url=news['href'])
+                item = types.InlineKeyboardButton('Читати', url=news['href'])
                 markup.add(item)
                 if news['subheader'] != None:
                     title = f" *{news['header']}*\n{news['subheader']}\n*{news['time']}*"

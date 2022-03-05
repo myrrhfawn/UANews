@@ -26,6 +26,10 @@ def get_content(html):
             image = img.get('src')
         else:
             image = None
+        if "https" in item.find('a').get('href'):
+            link = item.find('a').get('href')
+        else:
+            link = HOST + item.find('a').get('href')
         t = item.find('div', class_='article_time').get_text()
         news_time = datetime.datetime.strptime(t, '%H:%M').time()
         if times and news_time > times[-1]:
@@ -36,7 +40,7 @@ def get_content(html):
                 'time': item.find('div', class_='article_time').get_text(),
                 'header': head.find('a').get_text().replace('відео, фото', '').replace('відео', '').replace('фото', '').replace('список', '').replace('документ', '').replace('ВІДЕО', ''),
                 'subheader': subheader,
-                'href': HOST + item.find('a').get('href'),
+                'href': link,
                 'image': image,
             })
 
@@ -73,9 +77,10 @@ if __name__ == '__main__':
                 LAST = news_time
     '''
     newss = parse()
-    """for news in newss:
-        now_time = datetime.datetime.now().time()
-        news_time = datetime.datetime.strptime(news['time'], '%H:%M').time()
-        print(now_time)
-        print(news['time'])
-        print(now_time > news_time)"""
+    for news in newss:
+        print("============")
+        print("Header - " + str(news['header']))
+        print("Subheader - " + str(news['subheader']))
+        print("Time - " + str(news['time']))
+        print("Link - " + str(news['href']))
+        print("Image - " + str(news['image']))
