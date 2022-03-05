@@ -82,8 +82,8 @@ def send_news(message):
                                    reply_markup=markup,
                                    )
     print("end for")
-    print(SEND == True)
-    while SEND == True:
+    print(send == True)
+    while send == True:
         print("news while")
         now_time = datetime.datetime.now().time()
         newss = parse()
