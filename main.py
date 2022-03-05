@@ -78,11 +78,11 @@ def send_news(message, SEND=SEND):
                     bot.send_photo(chat_id=chat_id,
                                    parse_mode='Markdown',
                                    photo=news['image'],
-                                   caption=title,
+                                   text=title,
                                    reply_markup=markup,
                                    )
 
-    while SEND != False:
+    while True:
         print("news while")
         now_time = datetime.datetime.now().time()
         newss = parse()
@@ -110,6 +110,8 @@ def send_news(message, SEND=SEND):
                                     caption=title,
                                     reply_markup=markup
                                     )
+        if SEND == False:
+            break
 
 
 @bot.message_handler(commands=['stop'])
