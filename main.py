@@ -33,6 +33,7 @@ def send_news(message):
     print("start send_news")
     chat_id = message.chat.id
     if send == False:
+        send = True
         print("Im here 1")
         start_time_data = datetime.datetime.now() + datetime.timedelta(hours=2)
         now_time = start_time_data.time()
@@ -81,14 +82,8 @@ def send_news(message):
                                    reply_markup=markup,
                                    )
     print("end for")
-    print(send == True)
-    while True:
-        print("news while")
-        print(send)
-        print("SEND")
-        sending()
-        print("SENDING")
-
+    while send:
+        print('Start while')
         now_time = datetime.datetime.now().time()
         newss = parse()
         for news in newss:
@@ -123,15 +118,12 @@ def send_news(message):
                                     )
 
 def sending():
-    print(send)
-    print("Chage send")
     send = False
-    print(send)
 
 
 @bot.message_handler(commands=['stop'])
 def stop(message):
-   send = False
+   sending()
 
 
 #@bot.message_handler(func=lambda message: True, content_types=['text'])
