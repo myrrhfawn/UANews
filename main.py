@@ -114,7 +114,7 @@ def send_news(message, SEND=True):
 
 @bot.message_handler(commands=['stop'])
 def stop(message):
-   send_news(message, False)
+   exit(0)
 
 
 #@bot.message_handler(func=lambda message: True, content_types=['text'])
