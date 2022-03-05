@@ -113,7 +113,7 @@ def send_news(message, SEND=True):
 
 @bot.message_handler(commands=['test'])
 def ffff(message):
-    print(message)
+    print(message.text)
 
 @bot.message_handler(commands=['stop'])
 def stop(message):
