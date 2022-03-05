@@ -23,20 +23,14 @@ def start(message):
                               "Цей бот був створений для отримання актуальної інформації в Україні.\n"
                               "Надішліть:\n"
                               "/news - щоб отримувати актуальні новини.\n"
-                              "/stop - щоб зупинити розсилку.\n")
+                              )
     print("end start func")
 
 @bot.message_handler(commands=['news'])
 def send_news(message):
     print("start send_news")
     chat_id = message.chat.id
-    SEND = message.text
-    SEND = SEND.replace('/news ', '')
-    if SEND == 'stop':
-        SEND = False
-    else:
-        SEND = True
-
+    SEND == True
     if SEND == True:
         print("Im here 1")
         start_time_data = datetime.datetime.now() + datetime.timedelta(hours=2)
