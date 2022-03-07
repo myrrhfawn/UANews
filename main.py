@@ -30,12 +30,8 @@ def start(message):
 def send_news(message):
     print("start send_news")
     chat_id = message.chat.id
-    SEND = message.text
-    SEND = SEND.replace('/news ', '')
-    if SEND == 'stop':
-        SEND = False
-    else:
-        SEND = True
+
+    SEND = True
 
     if SEND == True:
         print("Im here 1")
