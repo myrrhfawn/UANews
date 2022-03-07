@@ -50,9 +50,9 @@ def send_news(message):
                 item = types.InlineKeyboardButton('Читати', url=news['href'])
                 markup.add(item)
                 if news['subheader'] != None:
-                    title = f" *{news['header']}*\n{news['subheader']}\n*{news['time']}*"
+                    title = f" *{news['time']}* • *{news['header']}*\n{news['subheader']}\n"
                 else:
-                    title = f" *{news['header']}*\n*{news['time']}*"
+                    title = f"*{news['time']}* • *{news['header']}.*\n"
                 if news['image'] == None:
                     LAST_SEND = news_time
                     print("send news without image")
