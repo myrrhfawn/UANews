@@ -38,7 +38,7 @@ def get_content(html):
             times.append(news_time)
             news.append({
                 'time': item.find('div', class_='article_time').get_text(),
-                'header': head.find('a').get_text().replace('відео, фото', '').replace('відео', '').replace('фото', '').replace('список', '').replace('документ', '').replace('ВІДЕО', ''),
+                'header': head.find('a').get_text().replace('фото, відео', '').replace('відео, фото', '').replace('відео', '').replace('фото', '').replace('список', '').replace('документ', '').replace('ВІДЕО', ''),
                 'subheader': subheader,
                 'href': link,
                 'image': image,
@@ -76,11 +76,4 @@ if __name__ == '__main__':
                 print(news['time'])
                 LAST = news_time
     '''
-    newss = parse()
-    for news in newss:
-        print("============")
-        print("Header - " + str(news['header']))
-        print("Subheader - " + str(news['subheader']))
-        print("Time - " + str(news['time']))
-        print("Link - " + str(news['href']))
-        print("Image - " + str(news['image']))
+
