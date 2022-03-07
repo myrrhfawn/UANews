@@ -58,5 +58,3 @@ def parse():
         return news
     else:
         print("error")
-
-if __name__ == '__main__':
