@@ -93,23 +93,26 @@ def send_news(message):
                 item = types.InlineKeyboardButton('Читати', url=news['href'])
                 markup.add(item)
                 if news['subheader'] != None:
-                    title = f" *{news['header']}*\n{news['subheader']}\n*{news['time']}*"
+                    title = f" *{news['time']}* 🞄 *{news['header']}*\n{news['subheader']}\n"
                 else:
-                    title = f" *{news['header']}*\n*{news['time']}*"
+                    title = f"*{news['time']}* 🞄 *{news['header']}.*\n"
                 if news['image'] == None:
+                    print("while: send news without image")
                     LAST_SEND = news_time
                     bot.send_message(chat_id=chat_id,
-                                     caption=title,
-                                     reply_markup=markup
+                                     parse_mode='Markdown',
+                                     text=title,
+                                     reply_markup=markup,
                                      )
                 else:
+                    print("while: send news with image")
                     LAST_SEND = news_time
                     bot.send_photo(chat_id=chat_id,
-                                    parse_mode='Markdown',
-                                    photo=news['image'],
-                                    caption=title,
-                                    reply_markup=markup
-                                    )
+                                   parse_mode='Markdown',
+                                   photo=news['image'],
+                                   caption=title,
+                                   reply_markup=markup,
+                                   )
         if SEND == False:
             print("exit from while")
             break
