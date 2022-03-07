@@ -114,16 +114,6 @@ def send_news(message):
             print("exit from while")
             break
 
-@bot.message_handler(commands=['test'])
-def ffff(message):
-    print(message.text)
-
-
-
-
-#@bot.message_handler(func=lambda message: True, content_types=['text'])
-#def echo(message):
-#    bot.reply_to(message, message.text)
 
 #server
 
@@ -141,5 +131,4 @@ def webhook():
     return '!', 200
 
 if __name__ == '__main__':
-    SEND = False
     server.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
